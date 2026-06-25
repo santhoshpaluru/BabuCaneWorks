@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babu Cane Works | Chittoor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#1B3A1F;
+    --green-mid:#3F6B30;
+    --gold:#D9A634;
+    --gold-soft:#F1D89A;
+    --cream:#FBF4E4;
+    --bark:#5C4327;
+    --ink:#21241D;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    color:var(--green-deep);
+    line-height:1.05;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* ===== Cane stalk divider — signature element ===== */
+  .cane-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:18px 0;
+  }
+  .cane-divider .node{
+    width:34px;height:34px;
+    border:2px solid var(--gold);
+    border-radius:6px;
+    background:repeating-linear-gradient(
+      90deg, var(--green-mid) 0 4px, var(--green-mid) 0 4px
+    );
+    background-color:var(--green-mid);
+    background-image:linear-gradient(180deg, rgba(255,255,255,.15), transparent 60%);
+    position:relative;
+  }
+  .cane-divider .joint{
+    width:6px;height:2px;background:var(--gold);
+  }
+
+  /* ===== Header / Nav ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--cream);
+    border-bottom:1px solid rgba(27,58,31,.15);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:7px 14px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{width:100px;height:100px;border-radius:10px;object-fit:cover;}
+  .brand-text .name{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--green-deep);}
+  .brand-text .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bark);}
+  nav ul{display:flex;gap:28px;list-style:none;font-size:.95rem;font-weight:500;}
+  nav a:hover{color:var(--green-mid);}
+  .nav-cta{
+    background:var(--green-deep);color:var(--cream);
+    padding:10px 20px;border-radius:30px;font-weight:600;font-size:.9rem;
+  }
+  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--green-deep);}
+
+  @media(max-width:840px){
+    nav ul{
+      position:absolute;top:78px;left:0;right:0;
+      background:var(--cream);
+      flex-direction:column;
+      padding:20px 24px;gap:16px;
+      border-bottom:1px solid rgba(27,58,31,.15);
+      display:none;
+    }
+    nav ul.open{display:flex;}
+    .menu-toggle{display:block;}
+    .nav-cta{display:none;}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .hero img.bg{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:saturate(1.05);
+  }
+  .hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(100deg, rgba(20,40,20,.82) 0%, rgba(20,40,20,.55) 45%, rgba(20,40,20,.15) 80%);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    max-width:1180px;margin:0 auto;padding:0 24px;
+    color:var(--cream);
+  }
+  .eyebrow{
+    color:var(--gold-soft);text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    color:#fff;
+    max-width:780px;
+  }
+  .hero p.lede{
+    margin-top:22px;font-size:1.15rem;max-width:520px;color:var(--gold-soft);
+  }
+  .hero-actions{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:14px 28px;border-radius:30px;font-weight:600;font-size:.95rem;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{background:var(--gold);color:var(--green-deep);}
+  .btn-outline{border:1.5px solid var(--cream);color:var(--cream);}
+
+  /* ===== Section wrapper ===== */
+  section{padding:90px 24px;}
+  .inner{max-width:1180px;margin:0 auto;}
+  .section-head{max-width:620px;margin-bottom:50px;}
+  .section-head .eyebrow{color:var(--green-mid);}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem);}
+  .section-head p{margin-top:14px;color:var(--bark);font-size:1.05rem;}
+
+  /* ===== About ===== */
+  .about{background:var(--cream);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about-grid img{border-radius:14px;}
+  .about-text h2{font-size:clamp(1.9rem,3vw,2.6rem);margin-bottom:18px;}
+  .about-text p{color:var(--bark);margin-bottom:16px;}
+  .stat-row{display:flex;gap:40px;margin-top:28px;}
+  .stat .num{font-family:'Fraunces',serif;font-size:2.1rem;color:var(--green-deep);font-weight:700;}
+  .stat .label{font-size:.85rem;color:var(--bark);text-transform:uppercase;letter-spacing:.05em;}
+
+  @media(max-width:840px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ===== Products ===== */
+  .products{background:var(--green-deep);color:var(--cream);}
+  .products .section-head .eyebrow{color:var(--gold-soft);}
+  .products .section-head h2{color:#fff;}
+  .products .section-head p{color:var(--gold-soft);}
+  .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .product-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(217,166,52,.3);
+    border-radius:16px;overflow:hidden;
+  }
+  .product-card img{width:100%;height:230px;object-fit:cover;}
+  .product-card .pc-body{padding:22px;}
+  .product-card h3{color:var(--gold-soft);font-size:1.25rem;margin-bottom:8px;}
+  .product-card p{font-size:.92rem;color:#d9d4c2;}
+
+  @media(max-width:900px){
+    .product-grid{grid-template-columns:1fr;}
+  }
+
+  /* ===== Gallery ===== */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .gallery-grid img{border-radius:12px;height:230px;width:100%;object-fit:cover;}
+  @media(max-width:900px){.gallery-grid{grid-template-columns:1fr;}}
+
+  /* ===== Location ===== */
+  .location{background:var(--gold-soft);}
+  .loc-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:stretch;}
+  .loc-card{
+    background:var(--cream);border-radius:16px;padding:36px;
+    border:1px solid rgba(92,67,39,.15);
+  }
+  .loc-card h3{margin-bottom:18px;font-size:1.4rem;}
+  .loc-row{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
+  .loc-row .ic{
+    width:38px;height:38px;border-radius:50%;background:var(--green-deep);
+    color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+  }
+  .loc-row .txt strong{display:block;color:var(--green-deep);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+  .loc-row .txt span, .loc-row .txt a{color:var(--bark);font-size:.97rem;}
+  .map-frame{border-radius:16px;overflow:hidden;border:1px solid rgba(92,67,39,.2);min-height:380px;}
+  .map-frame iframe{width:100%;height:100%;min-height:380px;border:0;}
+
+  @media(max-width:900px){.loc-grid{grid-template-columns:1fr;}}
+
+  /* ===== CTA strip ===== */
+  .cta-strip{
+    background:var(--bark);color:var(--cream);text-align:center;padding:70px 24px;
+  }
+  .cta-strip h2{color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:14px;}
+  .cta-strip p{color:var(--gold-soft);margin-bottom:30px;}
+
+  /* ===== Footer ===== */
+  footer{background:var(--green-deep);color:var(--gold-soft);padding:50px 24px 26px;}
+  .foot-grid{
+    max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+  }
+  footer h4{color:#fff;font-family:'Fraunces',serif;margin-bottom:14px;font-size:1.05rem;}
+  footer p, footer a{color:#cdd9c5;font-size:.92rem;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;}
+  .foot-bottom{
+    max-width:1180px;margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);
+    font-size:.82rem;color:#9fae93;text-align:center;
+  }
+  @media(max-width:840px){.foot-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <img src="images/logo.png" alt="Babu Cane Works logo">
+      <div class="brand-text">
+        <div class="name">Babu Cane Works</div>
+        <div class="tag">Kumar Nagar Colony · Chittoor</div>
+      </div>
+    </div>
+    <nav>
+      <ul id="navList">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="nav-cta">Visit Us</a>
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <img class="bg" src="images/hero.jpg" alt="Babu Cane Works">
+  <div class="hero-content">
+    <div class="eyebrow">Handcrafted Cane Furniture · Chittoor, Andhra Pradesh</div>
+    <h1>Babu Cane Works</h1>
+    <p class="lede">Sofas, chairs, swings and more — woven by hand from natural cane and rattan, right here in Kumar Nagar Colony.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-gold">See Our Products</a>
+      <a href="#location" class="btn btn-outline">Find Us</a>
+    </div>
+  </div>
+</section>
+
+<div class="cane-divider" aria-hidden="true">
+  <span class="node"></span><span class="joint"></span>
+  <span class="node"></span><span class="joint"></span>
+  <span class="node"></span><span class="joint"></span>
+  <span class="node"></span><span class="joint"></span>
+  <span class="node"></span>
+</div>
+
+<section class="about" id="about">
+  <div class="inner about-grid">
+    <img src="images/owner.jpg" alt="Owner of Babu Cane Works">
+    <div class="about-text">
+      <div class="eyebrow">Our Story</div>
+      <h2>Woven by hand, built to last</h2>
+      <p>Babu Cane Works has stood in Kumar Nagar Colony for years, hand-weaving cane and rattan into sofas, chairs, swings, beds and storage pieces for homes across Chittoor. Every frame is shaped and woven by hand, not machine-pressed.</p>
+      <p>We work with natural cane sourced and seasoned the traditional way, and we still build to order — your size, your finish, your cushion colour.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">100%</div><div class="label">Handwoven</div></div>
+        <div class="stat"><div class="num">Custom</div><div class="label">Made to Order</div></div>
+        <div class="stat"><div class="num">Local</div><div class="label">Chittoor Made</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="inner">
+    <div class="section-head">
+      <div class="eyebrow">What We Make</div>
+      <h2>From raw cane to finished furniture</h2>
+      <p>A few of the pieces we craft and customise, every single day.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/product-sofa.jpg" alt="Cane Sofa Set">
+        <div class="pc-body">
+          <h3>Sofa Sets</h3>
+          <p>Hand-woven cane sofa and armchair sets, built for verandahs, gardens and living rooms alike.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product-chair.jpg" alt="Cane Chair">
+        <div class="pc-body">
+          <h3>Chairs</h3>
+          <p>From classic woven armchairs to modern round-back designs, shaped and finished by hand.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product-swing.jpg" alt="Cane Hanging Swing Chair">
+        <div class="pc-body">
+          <h3>Swings &amp; Hanging Chairs</h3>
+          <p>Hanging cane swing chairs woven for comfort, with cushioning made to your choice of fabric.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="inner">
+    <div class="section-head">
+      <div class="eyebrow">A Look Inside</div>
+      <h2>Around the works</h2>
+    </div>
+    <div class="gallery-grid">
+      <img src="images/gallery1.jpg" alt="Cane Bed">
+      <img src="images/gallery2.jpg" alt="Cane Storage Basket">
+      <img src="images/gallery3.jpg" alt="Cane Armchair">
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="inner loc-grid">
+    <div class="loc-card">
+      <h3>Visit Babu Cane Works</h3>
+      <div class="loc-row">
+        <div class="ic">&#128205;</div>
+        <div class="txt">
+          <strong>Address</strong>
+          <span>22-1161, Kumar Nagar Colony Rd, Kumar Nagar Colony, KR Palli, Chittoor, Andhra Pradesh 517001</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="ic">&#9201;</div>
+        <div class="txt">
+          <strong>Hours</strong>
+          <span>Open daily — update with your shop timings</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="ic">&#128222;</div>
+        <div class="txt">
+          <strong>Phone</strong>
+          <span><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></span>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=13.220595,79.109372" target="_blank" class="btn btn-gold" style="margin-top:10px;">Get Directions</a>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps?q=13.220595,79.109372&z=17&output=embed"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <h2>Come see the craftsmanship in person</h2>
+  <p>Kumar Nagar Colony, KR Palli, Chittoor</p>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=13.220595,79.109372" target="_blank" class="btn btn-gold">Get Directions</a>
+</div>
+
+<footer id="contact">
+  <div class="foot-grid">
+    <div>
+      <h4>Babu Cane Works</h4>
+      <p>22-1161, Kumar Nagar Colony Rd, Kumar Nagar Colony,<br>KR Palli, Chittoor, Andhra Pradesh 517001</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></li>
+        <li><a href="https://www.google.com/maps?q=13.220595,79.109372" target="_blank">View on Map</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">&copy; 2026 Babu Cane Works. All rights reserved.</div>
+</footer>
+
+<script>
+  document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('navList').classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
