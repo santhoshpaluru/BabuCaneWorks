@@ -1,236 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Babu Cane Works | Chittoor</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --green-deep:#1B3A1F;
-    --green-mid:#3F6B30;
-    --gold:#D9A634;
-    --gold-soft:#F1D89A;
-    --cream:#FBF4E4;
-    --bark:#5C4327;
-    --ink:#21241D;
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Work Sans', sans-serif;
-    background:var(--cream);
-    color:var(--ink);
-    line-height:1.6;
-  }
-  h1,h2,h3{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    color:var(--green-deep);
-    line-height:1.05;
-  }
-  a{text-decoration:none;color:inherit;}
-  img{display:block;max-width:100%;}
-
-  /* ===== Cane stalk divider — signature element ===== */
-  .cane-divider{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    padding:18px 0;
-  }
-  .cane-divider .node{
-    width:34px;height:34px;
-    border:2px solid var(--gold);
-    border-radius:6px;
-    background:repeating-linear-gradient(
-      90deg, var(--green-mid) 0 4px, var(--green-mid) 0 4px
-    );
-    background-color:var(--green-mid);
-    background-image:linear-gradient(180deg, rgba(255,255,255,.15), transparent 60%);
-    position:relative;
-  }
-  .cane-divider .joint{
-    width:6px;height:2px;background:var(--gold);
-  }
-
-  /* ===== Header / Nav ===== */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:var(--cream);
-    border-bottom:1px solid rgba(27,58,31,.15);
-  }
-  .nav-wrap{
-    max-width:1180px;margin:0 auto;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:7px 14px;
-  }
-  .brand{display:flex;align-items:center;gap:12px;}
-  .brand img{width:100px;height:100px;border-radius:10px;object-fit:cover;}
-  .brand-text .name{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--green-deep);}
-  .brand-text .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bark);}
-  nav ul{display:flex;gap:28px;list-style:none;font-size:.95rem;font-weight:500;}
-  nav a:hover{color:var(--green-mid);}
-  .nav-cta{
-    background:var(--green-deep);color:var(--cream);
-    padding:10px 20px;border-radius:30px;font-weight:600;font-size:.9rem;
-  }
-  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--green-deep);}
-
-  @media(max-width:840px){
-    nav ul{
-      position:absolute;top:78px;left:0;right:0;
-      background:var(--cream);
-      flex-direction:column;
-      padding:20px 24px;gap:16px;
-      border-bottom:1px solid rgba(27,58,31,.15);
-      display:none;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Babu Cane Works | Chittoor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green-deep:#1B3A1F;
+      --green-mid:#3F6B30;
+      --gold:#D9A634;
+      --gold-soft:#F1D89A;
+      --cream:#FBF4E4;
+      --bark:#5C4327;
+      --ink:#21241D;
     }
-    nav ul.open{display:flex;}
-    .menu-toggle{display:block;}
-    .nav-cta{display:none;}
-  }
 
-  /* ===== Hero ===== */
-  .hero{
-    position:relative;
-    min-height:88vh;
-    display:flex;align-items:center;
-    overflow:hidden;
-  }
-  .hero img.bg{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    filter:saturate(1.05);
-  }
-  .hero::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(100deg, rgba(20,40,20,.82) 0%, rgba(20,40,20,.55) 45%, rgba(20,40,20,.15) 80%);
-  }
-  .hero-content{
-    position:relative;z-index:2;
-    max-width:1180px;margin:0 auto;padding:0 24px;
-    color:var(--cream);
-  }
-  .eyebrow{
-    color:var(--gold-soft);text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;
-    margin-bottom:18px;
-  }
-  .hero h1{
-    font-size:clamp(2.6rem, 6vw, 4.6rem);
-    color:#fff;
-    max-width:780px;
-  }
-  .hero p.lede{
-    margin-top:22px;font-size:1.15rem;max-width:520px;color:var(--gold-soft);
-  }
-  .hero-actions{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;}
-  .btn{
-    display:inline-block;padding:14px 28px;border-radius:30px;font-weight:600;font-size:.95rem;
-    transition:transform .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);}
-  .btn-gold{background:var(--gold);color:var(--green-deep);}
-  .btn-outline{border:1.5px solid var(--cream);color:var(--cream);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Work Sans', sans-serif;
+      background:var(--cream);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    h1,h2,h3{
+      font-family:'Fraunces', serif;
+      font-weight:700;
+      color:var(--green-deep);
+      line-height:1.05;
+    }
+    a{text-decoration:none;color:inherit;}
+    img{display:block;max-width:100%;height:auto;}
 
-  /* ===== Section wrapper ===== */
-  section{padding:90px 24px;}
-  .inner{max-width:1180px;margin:0 auto;}
-  .section-head{max-width:620px;margin-bottom:50px;}
-  .section-head .eyebrow{color:var(--green-mid);}
-  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem);}
-  .section-head p{margin-top:14px;color:var(--bark);font-size:1.05rem;}
+    /* ===== Cane stalk divider — signature element ===== */
+    .cane-divider{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:18px 0;
+    }
+    .cane-divider .node{
+      width:34px;height:34px;
+      border:2px solid var(--gold);
+      border-radius:6px;
+      background:repeating-linear-gradient(
+        90deg, var(--green-mid) 0 4px, var(--green-mid) 0 4px
+      );
+      background-color:var(--green-mid);
+      background-image:linear-gradient(180deg, rgba(255,255,255,.15), transparent 60%);
+      position:relative;
+    }
+    .cane-divider .joint{
+      width:6px;height:2px;background:var(--gold);
+    }
 
-  /* ===== About ===== */
-  .about{background:var(--cream);}
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-  .about-grid img{border-radius:14px;}
-  .about-text h2{font-size:clamp(1.9rem,3vw,2.6rem);margin-bottom:18px;}
-  .about-text p{color:var(--bark);margin-bottom:16px;}
-  .stat-row{display:flex;gap:40px;margin-top:28px;}
-  .stat .num{font-family:'Fraunces',serif;font-size:2.1rem;color:var(--green-deep);font-weight:700;}
-  .stat .label{font-size:.85rem;color:var(--bark);text-transform:uppercase;letter-spacing:.05em;}
+    /* ===== Header / Nav ===== */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:var(--cream);
+      border-bottom:1px solid rgba(27,58,31,.15);
+    }
+    .nav-wrap{
+      max-width:1180px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:7px 14px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;}
+    .brand img{width:100px;height:100px;border-radius:10px;object-fit:cover;}
+    .brand-text .name{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--green-deep);}
+    .brand-text .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bark);}
+    nav ul{display:flex;gap:28px;list-style:none;font-size:.95rem;font-weight:500;}
+    nav a:hover{color:var(--green-mid);}
+    .nav-cta{
+      background:var(--green-deep);color:var(--cream);
+      padding:10px 20px;border-radius:30px;font-weight:600;font-size:.9rem;
+    }
+    .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--green-deep);}
 
-  @media(max-width:840px){
-    .about-grid{grid-template-columns:1fr;}
-  }
+    @media(max-width:840px){
+      nav ul{
+        position:absolute;top:78px;left:0;right:0;
+        background:var(--cream);
+        flex-direction:column;
+        padding:20px 24px;gap:16px;
+        border-bottom:1px solid rgba(27,58,31,.15);
+        display:none;
+      }
+      nav ul.open{display:flex;}
+      .menu-toggle{display:block;}
+      .nav-cta{display:none;}
+    }
 
-  /* ===== Products ===== */
-  .products{background:var(--green-deep);color:var(--cream);}
-  .products .section-head .eyebrow{color:var(--gold-soft);}
-  .products .section-head h2{color:#fff;}
-  .products .section-head p{color:var(--gold-soft);}
-  .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
-  .product-card{
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(217,166,52,.3);
-    border-radius:16px;overflow:hidden;
-  }
-  .product-card img{width:100%;height:230px;object-fit:cover;}
-  .product-card .pc-body{padding:22px;}
-  .product-card h3{color:var(--gold-soft);font-size:1.25rem;margin-bottom:8px;}
-  .product-card p{font-size:.92rem;color:#d9d4c2;}
+    /* ===== Hero ===== */
+    .hero{
+      position:relative;
+      min-height:88vh;
+      display:flex;align-items:center;
+      overflow:hidden;
+    }
+    .hero img.bg{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+      filter:saturate(1.05);
+    }
+    .hero::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(100deg, rgba(20,40,20,.82) 0%, rgba(20,40,20,.55) 45%, rgba(20,40,20,.15) 80%);
+    }
+    .hero-content{
+      position:relative;z-index:2;
+      max-width:1180px;margin:0 auto;padding:0 24px;
+      color:var(--cream);
+    }
+    .eyebrow{
+      color:var(--gold-soft);text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;
+      margin-bottom:18px;
+    }
+    .hero h1{
+      font-size:clamp(2.6rem, 6vw, 4.6rem);
+      color:#fff;
+      max-width:780px;
+    }
+    .hero p.lede{
+      margin-top:22px;font-size:1.15rem;max-width:520px;color:var(--gold-soft);
+    }
+    .hero-actions{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;}
+    .btn{
+      display:inline-block;padding:14px 28px;border-radius:30px;font-weight:600;font-size:.95rem;
+      transition:transform .15s ease;
+    }
+    .btn:hover{transform:translateY(-2px);}
+    .btn-gold{background:var(--gold);color:var(--green-deep);}
+    .btn-outline{border:1.5px solid var(--cream);color:var(--cream);}
 
-  @media(max-width:900px){
-    .product-grid{grid-template-columns:1fr;}
-  }
+    /* ===== Section wrapper ===== */
+    section{padding:90px 24px;}
+    .inner{max-width:1180px;margin:0 auto;}
+    .section-head{max-width:620px;margin-bottom:50px;}
+    .section-head .eyebrow{color:var(--green-mid);}
+    .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem);}
+    .section-head p{margin-top:14px;color:var(--bark);font-size:1.05rem;}
 
-  /* ===== Gallery ===== */
-  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .gallery-grid img{border-radius:12px;height:230px;width:100%;object-fit:cover;}
-  @media(max-width:900px){.gallery-grid{grid-template-columns:1fr;}}
+    /* ===== About ===== */
+    .about{background:var(--cream);}
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+    .about-grid .owner-img-wrap{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    }
+    .about-grid .owner-img-wrap img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+    }
+    /* owner image text overlay — built from file content */
+    .owner-img-wrap .owner-overlay{
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:20px 18px 18px;
+      background:linear-gradient(0deg, rgba(27,58,31,0.85) 0%, transparent 100%);
+      color:var(--cream);
+      border-radius:0 0 14px 14px;
+      pointer-events:none;
+    }
+    .owner-overlay .line1{
+      font-family:'Fraunces',serif;
+      font-weight:700;
+      font-size:1.6rem;
+      letter-spacing:0.04em;
+      line-height:1.1;
+      color:#fff;
+    }
+    .owner-overlay .line2{
+      font-family:'Fraunces',serif;
+      font-weight:400;
+      font-size:1rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      color:var(--gold-soft);
+      margin-top:2px;
+    }
+    .owner-overlay .line3{
+      font-family:'Work Sans',sans-serif;
+      font-weight:300;
+      font-size:0.85rem;
+      letter-spacing:0.06em;
+      color:var(--gold-soft);
+      margin-top:6px;
+      opacity:0.9;
+    }
 
-  /* ===== Location ===== */
-  .location{background:var(--gold-soft);}
-  .loc-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:stretch;}
-  .loc-card{
-    background:var(--cream);border-radius:16px;padding:36px;
-    border:1px solid rgba(92,67,39,.15);
-  }
-  .loc-card h3{margin-bottom:18px;font-size:1.4rem;}
-  .loc-row{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
-  .loc-row .ic{
-    width:38px;height:38px;border-radius:50%;background:var(--green-deep);
-    color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
-  }
-  .loc-row .txt strong{display:block;color:var(--green-deep);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
-  .loc-row .txt span, .loc-row .txt a{color:var(--bark);font-size:.97rem;}
-  .map-frame{border-radius:16px;overflow:hidden;border:1px solid rgba(92,67,39,.2);min-height:380px;}
-  .map-frame iframe{width:100%;height:100%;min-height:380px;border:0;}
+    .about-text h2{font-size:clamp(1.9rem,3vw,2.6rem);margin-bottom:18px;}
+    .about-text p{color:var(--bark);margin-bottom:16px;}
+    .stat-row{display:flex;gap:40px;margin-top:28px;}
+    .stat .num{font-family:'Fraunces',serif;font-size:2.1rem;color:var(--green-deep);font-weight:700;}
+    .stat .label{font-size:.85rem;color:var(--bark);text-transform:uppercase;letter-spacing:.05em;}
 
-  @media(max-width:900px){.loc-grid{grid-template-columns:1fr;}}
+    @media(max-width:840px){
+      .about-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+      }
+      .about-grid .owner-img-wrap{
+        max-width:100%;
+        margin:0 auto;
+      }
+      .stat-row{
+        gap:24px;
+        flex-wrap:wrap;
+      }
+    }
 
-  /* ===== CTA strip ===== */
-  .cta-strip{
-    background:var(--bark);color:var(--cream);text-align:center;padding:70px 24px;
-  }
-  .cta-strip h2{color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:14px;}
-  .cta-strip p{color:var(--gold-soft);margin-bottom:30px;}
+    /* ===== Products ===== */
+    .products{background:var(--green-deep);color:var(--cream);}
+    .products .section-head .eyebrow{color:var(--gold-soft);}
+    .products .section-head h2{color:#fff;}
+    .products .section-head p{color:var(--gold-soft);}
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+    .product-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(217,166,52,.3);
+      border-radius:16px;overflow:hidden;
+    }
+    .product-card img{width:100%;height:230px;object-fit:cover;}
+    .product-card .pc-body{padding:22px;}
+    .product-card h3{color:var(--gold-soft);font-size:1.25rem;margin-bottom:8px;}
+    .product-card p{font-size:.92rem;color:#d9d4c2;}
 
-  /* ===== Footer ===== */
-  footer{background:var(--green-deep);color:var(--gold-soft);padding:50px 24px 26px;}
-  .foot-grid{
-    max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
-  }
-  footer h4{color:#fff;font-family:'Fraunces',serif;margin-bottom:14px;font-size:1.05rem;}
-  footer p, footer a{color:#cdd9c5;font-size:.92rem;}
-  footer ul{list-style:none;}
-  footer li{margin-bottom:8px;}
-  .foot-bottom{
-    max-width:1180px;margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);
-    font-size:.82rem;color:#9fae93;text-align:center;
-  }
-  @media(max-width:840px){.foot-grid{grid-template-columns:1fr;}}
-</style>
+    @media(max-width:900px){
+      .product-grid{grid-template-columns:1fr;}
+    }
+
+    /* ===== Gallery ===== */
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .gallery-grid img{border-radius:12px;height:230px;width:100%;object-fit:cover;}
+    @media(max-width:900px){.gallery-grid{grid-template-columns:1fr;}}
+
+    /* ===== Location ===== */
+    .location{background:var(--gold-soft);}
+    .loc-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:stretch;}
+    .loc-card{
+      background:var(--cream);border-radius:16px;padding:36px;
+      border:1px solid rgba(92,67,39,.15);
+    }
+    .loc-card h3{margin-bottom:18px;font-size:1.4rem;}
+    .loc-row{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
+    .loc-row .ic{
+      width:38px;height:38px;border-radius:50%;background:var(--green-deep);
+      color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+    }
+    .loc-row .txt strong{display:block;color:var(--green-deep);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+    .loc-row .txt span, .loc-row .txt a{color:var(--bark);font-size:.97rem;}
+    .map-frame{border-radius:16px;overflow:hidden;border:1px solid rgba(92,67,39,.2);min-height:380px;}
+    .map-frame iframe{width:100%;height:100%;min-height:380px;border:0;}
+
+    @media(max-width:900px){.loc-grid{grid-template-columns:1fr;}}
+
+    /* ===== CTA strip ===== */
+    .cta-strip{
+      background:var(--bark);color:var(--cream);text-align:center;padding:70px 24px;
+    }
+    .cta-strip h2{color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:14px;}
+    .cta-strip p{color:var(--gold-soft);margin-bottom:30px;}
+
+    /* ===== Footer ===== */
+    footer{background:var(--green-deep);color:var(--gold-soft);padding:50px 24px 26px;}
+    .foot-grid{
+      max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+    }
+    footer h4{color:#fff;font-family:'Fraunces',serif;margin-bottom:14px;font-size:1.05rem;}
+    footer p, footer a{color:#cdd9c5;font-size:.92rem;}
+    footer ul{list-style:none;}
+    footer li{margin-bottom:8px;}
+    .foot-bottom{
+      max-width:1180px;margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);
+      font-size:.82rem;color:#9fae93;text-align:center;
+    }
+    @media(max-width:840px){.foot-grid{grid-template-columns:1fr;}}
+  </style>
 </head>
 <body>
 
 <header>
   <div class="nav-wrap">
     <div class="brand">
-      <img src="images/logo.png" alt="Babu Cane Works logo">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%233F6B30' width='100' height='100'/%3E%3Cpath d='M30 28 L70 28 L70 40 L30 40 Z' fill='%23D9A634'/%3E%3Cpath d='M30 44 L70 44 L70 56 L30 56 Z' fill='%23D9A634'/%3E%3Cpath d='M30 60 L70 60 L70 72 L30 72 Z' fill='%23D9A634'/%3E%3Ctext x='50' y='88' font-family='Fraunces,serif' font-size='14' fill='%23F1D89A' text-anchor='middle' font-weight='700'%3EBABU%3C/text%3E%3C/svg%3E" alt="Babu Cane Works logo">
       <div class="brand-text">
         <div class="name">Babu Cane Works</div>
         <div class="tag">Kumar Nagar Colony · Chittoor</div>
@@ -251,7 +317,7 @@
 </header>
 
 <section class="hero">
-  <img class="bg" src="images/hero.jpg" alt="Babu Cane Works">
+  <img class="bg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 700'%3E%3Crect fill='%233F6B30' width='1200' height='700'/%3E%3Cpath d='M0 350 Q200 200 400 300 T800 250 T1200 350 L1200 700 L0 700 Z' fill='%235C4327' opacity='0.4'/%3E%3C/svg%3E" alt="Babu Cane Works">
   <div class="hero-content">
     <div class="eyebrow">Handcrafted Cane Furniture · Chittoor, Andhra Pradesh</div>
     <h1>Babu Cane Works</h1>
@@ -273,7 +339,16 @@
 
 <section class="about" id="about">
   <div class="inner about-grid">
-    <img src="images/owner.jpg" alt="Owner of Babu Cane Works">
+    <div class="owner-img-wrap">
+      <!-- owner image with overlay text from file content -->
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Crect fill='%2321241D' width='600' height='500'/%3E%3Ccircle cx='300' cy='200' r='100' fill='%233F6B30'/%3E%3Ccircle cx='300' cy='200' r='70' fill='%235C4327'/%3E%3Ccircle cx='300' cy='200' r='40' fill='%23D9A634'/%3E%3C/svg%3E" alt="Owner of Babu Cane Works">
+      <div class="owner-overlay">
+        <div class="line1">Babu</div>
+        <div class="line2">Cane Works</div>
+        <div class="line3">— Chittoor —</div>
+        <div class="line3" style="margin-top:2px;font-weight:300;">Crafted by Nature, Made with Tradition.</div>
+      </div>
+    </div>
     <div class="about-text">
       <div class="eyebrow">Our Story</div>
       <h2>Woven by hand, built to last</h2>
@@ -297,21 +372,21 @@
     </div>
     <div class="product-grid">
       <div class="product-card">
-        <img src="images/product-sofa.jpg" alt="Cane Sofa Set">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 230'%3E%3Crect fill='%235C4327' width='400' height='230'/%3E%3Crect x='30' y='40' width='120' height='120' rx='8' fill='%23D9A634' opacity='0.7'/%3E%3Crect x='180' y='40' width='120' height='120' rx='8' fill='%23D9A634' opacity='0.5'/%3E%3C/svg%3E" alt="Cane Sofa Set">
         <div class="pc-body">
           <h3>Sofa Sets</h3>
           <p>Hand-woven cane sofa and armchair sets, built for verandahs, gardens and living rooms alike.</p>
         </div>
       </div>
       <div class="product-card">
-        <img src="images/product-chair.jpg" alt="Cane Chair">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 230'%3E%3Crect fill='%233F6B30' width='400' height='230'/%3E%3Crect x='100' y='30' width='80' height='130' rx='10' fill='%23D9A634' opacity='0.6'/%3E%3C/svg%3E" alt="Cane Chair">
         <div class="pc-body">
           <h3>Chairs</h3>
           <p>From classic woven armchairs to modern round-back designs, shaped and finished by hand.</p>
         </div>
       </div>
       <div class="product-card">
-        <img src="images/product-swing.jpg" alt="Cane Hanging Swing Chair">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 230'%3E%3Crect fill='%235C4327' width='400' height='230'/%3E%3Ccircle cx='200' cy='100' r='70' fill='%23D9A634' opacity='0.5'/%3E%3C/svg%3E" alt="Cane Hanging Swing Chair">
         <div class="pc-body">
           <h3>Swings &amp; Hanging Chairs</h3>
           <p>Hanging cane swing chairs woven for comfort, with cushioning made to your choice of fabric.</p>
@@ -328,9 +403,9 @@
       <h2>Around the works</h2>
     </div>
     <div class="gallery-grid">
-      <img src="images/gallery1.jpg" alt="Cane Bed">
-      <img src="images/gallery2.jpg" alt="Cane Storage Basket">
-      <img src="images/gallery3.jpg" alt="Cane Armchair">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 230'%3E%3Crect fill='%231B3A1F' width='400' height='230'/%3E%3Crect x='50' y='50' width='300' height='100' rx='10' fill='%23D9A634' opacity='0.6'/%3E%3C/svg%3E" alt="Cane Bed">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 230'%3E%3Crect fill='%235C4327' width='400' height='230'/%3E%3Ccircle cx='200' cy='120' r='60' fill='%23D9A634' opacity='0.5'/%3E%3C/svg%3E" alt="Cane Storage Basket">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 230'%3E%3Crect fill='%233F6B30' width='400' height='230'/%3E%3Crect x='120' y='30' width='80' height='140' rx='8' fill='%23D9A634' opacity='0.6'/%3E%3C/svg%3E" alt="Cane Armchair">
     </div>
   </div>
 </section>
