@@ -38,7 +38,7 @@
     height:auto;
   }
 
-  /* ===== Cane stalk divider — signature element ===== */
+  /* ===== Cane stalk divider ===== */
   .cane-divider{
     display:flex;
     align-items:center;
@@ -161,11 +161,14 @@
     gap:60px;
     align-items:center;
   }
+  
+  /* FIXED: Owner image container - properly constrained */
   .about-grid .owner-img-wrap{
     position:relative;
     border-radius:14px;
     overflow:hidden;
     box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    width:100%;
     max-width:100%;
   }
   .about-grid .owner-img-wrap img{
@@ -227,8 +230,8 @@
       gap:30px;
     }
     .about-grid .owner-img-wrap{
-      max-width:100%;
       width:100%;
+      max-width:100%;
       margin:0 auto;
     }
     .about-grid .owner-img-wrap img{
@@ -370,7 +373,8 @@
 <section class="about" id="about">
   <div class="inner about-grid">
     <div class="owner-img-wrap">
-      <img src="images/owner.jpg" alt="Owner of Babu Cane Works">
+      <!-- FIXED: Using the actual image with proper containment -->
+      <img src="images/owner.jpg" alt="Owner of Babu Cane Works" style="width:100%;height:auto;max-width:100%;display:block;">
       <div class="owner-overlay">
         <div class="line1">Babu</div>
         <div class="line2">Cane Works</div>
